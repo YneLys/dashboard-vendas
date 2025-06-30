@@ -3,57 +3,51 @@
 A modern and responsive sales dashboard built with **React**, **TypeScript**, **Recharts**, and **TailwindCSS**, featuring:
 
 - Interactive bar and line charts
-- Responsive sidebar with navigation
-- Customer table with status indicators
-- Dynamic data generation and filtering
-- Modern dark-themed UI inspired by Figma design
+- Responsive sidebar with navigation and icons
+- Customer table with filter and Excel export
+- Dynamic data filtering by year
+- Dark UI inspired by Figma design
 
 ---
 
 ## 🚀 Features
 
 ### 🧩 Dashboard
-- Monthly revenue bar chart
-- Total revenue and orders for selected year
+- Monthly revenue bar chart with mock data
 - Year filter (2005–2025)
-- Sales generated with randomized mock data
+- Displays total revenue and number of orders
 
 ### 📈 Sales Page
-- Multi-series line chart (e.g. Toys vs Animal Products)
+- Multi-series line chart comparing product categories (e.g. Toys vs Animal Products)
 - Year dropdown filter
-- Tooltip and legend
-- Dark mode visual styling
+- Tooltip and legend with custom styling
 
 ### 👥 Customers Page
-- Responsive customer table
-- Fields: ID, Name, Date, Invoiced Amount, Status
-- Colored status tags: Shipped (yellow), Delivered (green), Paid (blue)
-- "Filter" and "Download" mock buttons
+- Responsive table: ID, Name, Date, Invoiced Amount, Status
+- Status color tags (Shipped - yellow, Delivered - green, Paid - blue)
+- Dropdown filter by status
+- Excel download button (filtered data only)
 
 ---
 
-## 📁 Folder Structure
+## 📁 Project Structure
 
 src/
-│
 ├── components/
 │ ├── Sidebar.tsx
 │ ├── SalesBarChart.tsx
 │ ├── SalesLineChart.tsx
 │ └── CustomerTable.tsx
-│
 ├── data/
 │ └── sales.ts
-│
 ├── pages/
 │ ├── SalesPage.tsx
 │ └── CustomersPage.tsx
-│
 ├── App.tsx
 ├── main.tsx
 └── index.css
 
-markdown
+yaml
 Copy
 Edit
 
@@ -61,21 +55,22 @@ Edit
 
 ## 🧑‍💻 Tech Stack
 
-- [React](https://reactjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Recharts](https://recharts.org/)
-- [TailwindCSS](https://tailwindcss.com/)
-- [Vite](https://vitejs.dev/)
-- [Lucide Icons](https://lucide.dev/)
+- React
+- TypeScript
+- TailwindCSS
+- Recharts
+- XLSX + file-saver (for Excel export)
+- Lucide Icons
+- Vite
 
 ---
 
-## 📦 Setup Instructions
+## 📦 Getting Started
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/sales-dashboard.git
-   cd sales-dashboard
+1. **Clone the repo**  
+```bash
+git clone https://github.com/your-username/sales-dashboard.git
+cd sales-dashboard
 Install dependencies
 
 bash
@@ -88,5 +83,14 @@ bash
 Copy
 Edit
 npm run dev
+Open http://localhost:3000
+
+⚙️ Routing
+/ → Dashboard
+
+/sales → Sales Page
+
+/customers → Customers Page
+
 📝 License
 This project is open-source and free to use.

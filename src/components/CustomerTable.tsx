@@ -52,14 +52,7 @@ const CustomerTable: React.FC<CustomerTableProps> = ({ customers }) => {
         </tbody>
       </table>
 
-      <div className="mt-4 flex gap-2">
-        <button className="bg-primary px-4 py-2 rounded hover:bg-yellow-500 transition">
-          Filter
-        </button>
-        <button className="bg-primary px-4 py-2 rounded hover:bg-yellow-500 transition">
-          Download
-        </button>
-      </div>
+   
     </div>
   );
 };
