@@ -1,3 +1,48 @@
-node_modules
-dist
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Local env files
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor directories and files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# MacOS system files
+.DS_Store
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Vite cache
+.vite/
+
+# Optional npm cache folder
+.npm/
+
+# Tailwind CSS generated files (if any)
+tailwind.config.js.map
+
+# Testing
+coverage/
+
+# Misc
+*.log
