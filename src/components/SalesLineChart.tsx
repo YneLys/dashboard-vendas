@@ -5,48 +5,85 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  ResponsiveContainer,
   Legend,
-  CartesianGrid,
+  ResponsiveContainer,
 } from 'recharts';
 
-interface SeriesData {
-  month: string;
-  toys: number;
-  pets: number;
+export interface Sale {
+  date: string; // ISO string
+  amount: number;
+  category: 'Toys' | 'Animal Care';
 }
 
-interface SalesLineChartProps {
-  data: SeriesData[];
+export interface SalesLineChartProps {
+  data: Sale[];
+}
+
+// Função para agregar dados por mês e categoria
+function aggregateMonthlyData(data: Sale[]) {
+  const months = [
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+  ];
+
+  // Inicializa objeto com meses e categorias zerados
+  const monthlyTotals = months.map(month => ({
+    month,
+    Toys: 0,
+    'Animal Care': 0,
+  }));
+
+  data.forEach(sale => {
+    const date = new Date(sale.date);
+    const monthIndex = date.getMonth();
+    if (sale.category === 'Toys' || sale.category === 'Animal Care') {
+      monthlyTotals[monthIndex][sale.category] += sale.amount;
+    }
+  });
+
+  // Arredonda valores
+  return monthlyTotals.map(m => ({
+    ...m,
+    Toys: parseFloat(m.Toys.toFixed(2)),
+    'Animal Care': parseFloat(m['Animal Care'].toFixed(2)),
+  }));
 }
 
 const SalesLineChart: React.FC<SalesLineChartProps> = ({ data }) => {
+  const chartData = aggregateMonthlyData(data);
+
   return (
-    <div className="bg-accent p-6 rounded-2xl text-textLight shadow w-full">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-lg font-semibold">Sales</h2>
-        <select className="bg-[#2B2B2B] border border-gray-700 px-2 py-1 rounded text-white text-sm">
-          <option>2022</option>
-          <option>2023</option>
-          <option>2024</option>
-        </select>
-      </div>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={data}>
-          <CartesianGrid stroke="#333" strokeDasharray="3 3" />
-          <XAxis dataKey="month" stroke="#aaa" />
-          <YAxis stroke="#aaa" tickFormatter={(val) => `$${val / 1000}k`} />
-          <Tooltip
-            contentStyle={{ backgroundColor: "#1F1F1F", border: "none" }}
-            labelStyle={{ color: "#fff" }}
-            formatter={(value: number) => `$${value.toLocaleString()}`}
-          />
-          <Legend />
-          <Line type="monotone" dataKey="toys" stroke="#9C6BFF" strokeWidth={3} name="Toys" />
-          <Line type="monotone" dataKey="pets" stroke="#34D399" strokeDasharray="5 5" strokeWidth={2} name="Animal Care Products" />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart data={chartData} margin={{ top: 20, right: 40, left: 0, bottom: 0 }}>
+        <XAxis dataKey="month" stroke="#EAEAEA" />
+        <YAxis stroke="#EAEAEA" />
+        <Tooltip
+          contentStyle={{ backgroundColor: '#1E1E1E', borderRadius: '8px' }}
+          labelStyle={{ color: '#F4D03F' }}
+        />
+        <Legend
+          wrapperStyle={{ color: '#EAEAEA' }}
+          verticalAlign="top"
+          height={36}
+        />
+        <Line
+          type="monotone"
+          dataKey="Toys"
+          stroke="#F4D03F"
+          strokeWidth={3}
+          dot={{ r: 4 }}
+          activeDot={{ r: 6 }}
+        />
+        <Line
+          type="monotone"
+          dataKey="Animal Care"
+          stroke="#3A3B3C"
+          strokeWidth={3}
+          dot={{ r: 4 }}
+          activeDot={{ r: 6 }}
+        />
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
 
