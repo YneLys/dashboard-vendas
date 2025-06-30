@@ -3,7 +3,9 @@ import { generateSales, Sale } from './data/sales';
 import YearFilter from './components/YearFilter';
 import SalesBarChart from './components/SalesBarChart';
 
-const AVAILABLE_YEARS = [2023, 2024];
+
+const AVAILABLE_YEARS = Array.from({ length: 2025 - 2005 + 1 }, (_, i) => 2005 + i);
+
 
 function monthName(monthIndex: number): string {
   return ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][monthIndex];
