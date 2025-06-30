@@ -34,13 +34,11 @@ const App: React.FC = () => {
   const totalOrders = filteredSales.length;
 
   return (
-    <div className="flex bg-darkBg min-h-screen">
+    <div className="flex bg-darkBg min-h-screen text-white font-poppins">
       <Sidebar />
 
       <main className="ml-60 p-8 w-full max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-white flex items-center gap-2">
-          📊 Dashboard de Vendas
-        </h1>
+        <h1 className="text-3xl font-bold mb-6 flex items-center gap-2">📊 Dashboard de Vendas</h1>
 
         <div className="mb-6">
           <YearFilter selectedYear={year} years={AVAILABLE_YEARS} onChange={setYear} />

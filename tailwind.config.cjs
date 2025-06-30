@@ -1,3 +1,4 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     "./index.html",
@@ -10,6 +11,9 @@ module.exports = {
         darkBg: '#121212',
         accent: '#3A3B3C',
         textLight: '#EAEAEA',
+      },
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif'],
       },
     },
   },
