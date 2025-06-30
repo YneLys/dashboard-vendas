@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { generateSalesForYears, Sale } from './data/sales';
 import YearFilter from './components/YearFilter';
 import SalesBarChart from './components/SalesBarChart';
+import Sidebar from './components/Sidebar';
 
 const AVAILABLE_YEARS = Array.from({ length: 2025 - 2005 + 1 }, (_, i) => 2005 + i);
 
@@ -33,28 +34,32 @@ const App: React.FC = () => {
   const totalOrders = filteredSales.length;
 
   return (
-    <main className="min-h-screen px-6 py-10 max-w-7xl mx-auto">
-      <h1 className="text-4xl font-bold mb-8 text-center text-white flex items-center justify-center gap-2">
-        <span>📊</span> Dashboard de Vendas
-      </h1>
+    <div className="flex bg-darkBg min-h-screen">
+      <Sidebar />
 
-      <div className="mb-6 flex justify-center">
-        <YearFilter selectedYear={year} years={AVAILABLE_YEARS} onChange={setYear} />
-      </div>
+      <main className="ml-60 p-8 w-full max-w-7xl mx-auto">
+        <h1 className="text-3xl font-bold mb-6 text-white flex items-center gap-2">
+          📊 Dashboard de Vendas
+        </h1>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-        <div className="bg-accent p-6 rounded-2xl shadow-lg text-center text-textLight">
-          <h2 className="text-lg font-semibold mb-2">Total Faturado</h2>
-          <p className="text-3xl font-bold text-primary">R$ {totalRevenue.toFixed(2)}</p>
+        <div className="mb-6">
+          <YearFilter selectedYear={year} years={AVAILABLE_YEARS} onChange={setYear} />
         </div>
-        <div className="bg-accent p-6 rounded-2xl shadow-lg text-center text-textLight">
-          <h2 className="text-lg font-semibold mb-2">Total Pedidos</h2>
-          <p className="text-3xl font-bold">{totalOrders}</p>
-        </div>
-      </div>
 
-      <SalesBarChart data={monthlyData} />
-    </main>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+          <div className="bg-accent p-6 rounded-2xl shadow text-center text-textLight">
+            <h2 className="text-lg font-semibold mb-2">Total Faturado</h2>
+            <p className="text-3xl font-bold text-primary">R$ {totalRevenue.toFixed(2)}</p>
+          </div>
+          <div className="bg-accent p-6 rounded-2xl shadow text-center text-textLight">
+            <h2 className="text-lg font-semibold mb-2">Total Pedidos</h2>
+            <p className="text-3xl font-bold">{totalOrders}</p>
+          </div>
+        </div>
+
+        <SalesBarChart data={monthlyData} />
+      </main>
+    </div>
   );
 };
 
